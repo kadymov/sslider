@@ -2,3 +2,8 @@
                         SSlider
     Author: Kadymov Alexander (alkadymov@gmail.com)
 *********************************************************/
+
+.ss-slider-slide {
+    border: 1px solid #aaa;
+    box-sizing: border-box;
+}

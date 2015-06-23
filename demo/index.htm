@@ -11,6 +11,8 @@
 </head>
 <body>
        
+    <div id="slider_container"></div>
+       
     <!-------------------- Scripts --------------------->
     <script src="../lib/jquery.js"></script>
     <script src="../src/js/jquery.sslider.js"></script>
@@ -18,6 +20,7 @@
         $(document).on( "mobileinit", function() {
             'use strict';
             
+            $('#slider_container').sslider(['', '', '']);
         });
     </script>
     <script src="../lib/jquery.mobile.js"></script>
