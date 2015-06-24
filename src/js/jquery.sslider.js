@@ -181,7 +181,7 @@
                 }
             }
             
-            if (!slides[currentId].is('loaded')) {
+            if (!slides[currentId].is('.loaded')) {
                 this._loadImage(this.options.images[currentId], slides[currentId]);
             }
             
