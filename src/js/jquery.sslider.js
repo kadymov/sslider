@@ -9,7 +9,9 @@
         defaults = {
             images : [],
             animationSpeed: 800,
-            afterSlideChange : function(index, imgUrl) {}
+            afterSlideChange : function(index, imgUrl) {},
+            swipeDurationThreshold : 200,
+            swipeDistanceThreshold : 30
         };
 
     function Plugin(element, options) {
@@ -155,6 +157,7 @@
         
         _startDrag : function() {
             this._setActSlidesPos(true);
+            this._startDragTime = new Date();
         },
         
         _drag : function(startPos, dx) {
@@ -169,16 +172,20 @@
                 slides = this._slides,
                 nextId = id + 1 >= slides.length ? 0 : id + 1,
                 prevId = id - 1 < 0 ? slides.length - 1 : id - 1,
-                currentId = id;
+                currentId = id,
+                
+                duration = (new Date()) - this._startDragTime;
             
-            if (Math.abs(dx) > slideWidth / 2) {
-                if (dx < 0) {
-                    left = 0;
-                    currentId = this._currentSlideId = prevId;
-                } else {
-                    left = -slideWidth * 2;
-                    currentId = this._currentSlideId = nextId;
-                }
+      
+            if ((Math.abs(dx) > slideWidth / 2) || 
+                (duration < this.options.swipeDurationThreshold && dx > this.options.swipeDistanceThreshold)) {
+                    if (dx < 0) {
+                        left = 0;
+                        currentId = this._currentSlideId = prevId;
+                    } else {
+                        left = -slideWidth * 2;
+                        currentId = this._currentSlideId = nextId;
+                    }
             }
             
             if (!slides[currentId].is('.loaded')) {
