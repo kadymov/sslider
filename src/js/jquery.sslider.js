@@ -9,7 +9,7 @@
         defaults = {
             images : [],
             animationSpeed: 800,
-            delay: 4000            
+            afterSlideChange : function(index, imgUrl) {}
         };
 
     function Plugin(element, options) {
@@ -185,13 +185,14 @@
                 this._loadImage(this.options.images[currentId], slides[currentId]);
             }
             
-            this._elements.$trolley.animate({'left': left}, 300, null, (function() {
+            this._elements.$trolley.animate({'left': left}, this.options.animationSpeed, null, (function() {
                 slides[prevId].hide();
                 slides[nextId].hide();
                 slides[id].hide();
                 slides[this._currentSlideId].show();
             }).bind(this));
             
+            this.options.afterSlideChange(currentId, this.options.images[currentId]);            
         }
     });
 

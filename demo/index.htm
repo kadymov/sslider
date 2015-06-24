@@ -12,28 +12,10 @@
 <body>
        
     <div id="slider_container"></div>
+    
     <div class="comments-container">
         <h1>Comments</h1>
-        <ul id="comments" class="comments-list">
-            <li>
-                <div class="comment-uname">Alex</div>
-                This is amazing! Very good photo!
-            </li>
-            <li>
-                <div class="comment-uname">Mike</div>
-                I think I'm crying.
-            </li>
-            <li>
-                <div class="comment-uname">Anna</div>
-                Love your shot :)
-            </li>
-            <li>
-                <div class="comment-uname">Nadia</div>
-                Such elegant.
-            </li>
-            
-            
-        </ul>
+        <ul id="comments" class="comments-list"></ul>
     </div>
        
     <!-------------------- Scripts --------------------->
@@ -45,7 +27,23 @@
             
             $.mobile.loading().hide();
             
-            $('#slider_container').sslider(['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg', ]);
+            $('#slider_container').sslider({
+                images: ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg'],
+                afterSlideChange : function (id) {
+                    $.ajax({
+                        url: 'data/img' + id + '.json',
+                        dataType : 'json'
+                    }).done(function(data) {
+                        var html = [];
+                        Array.isArray(data) && data.forEach(function(el) {
+                            html.push('<li><div class="comment-uname">' + 
+                                      el.uname + '</div>' + el.comment + '</li>');
+                        });
+
+                        $('#comments').html(html);
+                    });
+                }
+            });
         });
     </script>
     <script src="../lib/jquery.mobile.js"></script>
