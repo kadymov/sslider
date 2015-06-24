@@ -20,7 +20,9 @@
         $(document).on( "mobileinit", function() {
             'use strict';
             
-            $('#slider_container').sslider(['', '', '']);
+            $.mobile.loading().hide();
+            
+            $('#slider_container').sslider(['', '', '', '', '', '', '']);
         });
     </script>
     <script src="../lib/jquery.mobile.js"></script>
