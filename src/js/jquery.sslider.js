@@ -41,6 +41,8 @@
             
             this._resize();
             
+            this._loadImage(this.options.images[0], this._slides[0]);
+            
             // *** Events ***
             
             var startTouch,
@@ -116,9 +118,10 @@
             var img = new Image();
             
             img.onload = function() {
-                $slide.append(img);
+                $slide.addClass('loaded').empty().append(img);
             };
             
+            img.className = 'ss-slider-image';
             img.src = imageUrl;
             
             return img;
@@ -165,16 +168,21 @@
                 id = this._currentSlideId,
                 slides = this._slides,
                 nextId = id + 1 >= slides.length ? 0 : id + 1,
-                prevId = id - 1 < 0 ? slides.length - 1 : id - 1;
+                prevId = id - 1 < 0 ? slides.length - 1 : id - 1,
+                currentId = id;
             
             if (Math.abs(dx) > slideWidth / 2) {
                 if (dx < 0) {
                     left = 0;
-                    this._currentSlideId = prevId;
+                    currentId = this._currentSlideId = prevId;
                 } else {
                     left = -slideWidth * 2;
-                    this._currentSlideId = nextId;
+                    currentId = this._currentSlideId = nextId;
                 }
+            }
+            
+            if (!slides[currentId].is('loaded')) {
+                this._loadImage(this.options.images[currentId], slides[currentId]);
             }
             
             this._elements.$trolley.animate({'left': left}, 300, null, (function() {
