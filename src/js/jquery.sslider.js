@@ -71,6 +71,7 @@
             }).bind(this));
             
             $(window).on('resize', this._resize.bind(this));
+            $(window).on('orientationchange', this._resize.bind(this));
             
             $(this.element).append($container);
         },
@@ -78,7 +79,7 @@
         _createSlides : function() {
             var $trolley = this._elements.$trolley,
                 slides = this._slides = [],
-                slideHtml = '<div class="ss-slider-slide" style="position: absolute;" />',
+                slideHtml = '<div class="ss-slider-slide" style="position: absolute; display: none;" />',
                 $slide;
             
             $trolley.empty();
@@ -107,6 +108,8 @@
                     'height' : '100%'
                 });
             });
+            
+            this._setActSlidesPos();
         },
         
         _loadImage(imageUrl, $slide) {
@@ -121,15 +124,14 @@
             return img;
         },
         
-        _startDrag : function() {
+        _setActSlidesPos : function(showActSlides) {
             var id = this._currentSlideId,
                 slides = this._slides,
                 nextId = id + 1 >= slides.length ? 0 : id + 1,
                 prevId = id - 1 < 0 ? slides.length - 1 : id - 1,
                 slideWidth = this._elements.$container.width();
-                     
+                
             this._elements.$trolley.stop();
-            
             this._elements.$trolley.css('left', -slideWidth);
             
             slides[id].css({
@@ -139,13 +141,17 @@
             
             slides[nextId].css({
                 'left' : slideWidth * 2,
-                'display' : 'block'
+                'display' : showActSlides ? 'block' : 'none'
             });
             
             slides[prevId].css({
                 'left' : 0,
-                'display' : 'block'
+                'display' : showActSlides ? 'block' : 'none'
             });
+        },
+        
+        _startDrag : function() {
+            this._setActSlidesPos(true);
         },
         
         _drag : function(startPos, dx) {
@@ -157,21 +163,26 @@
                 left = -slideWidth,
                 
                 id = this._currentSlideId,
-                slides = this._slides;
+                slides = this._slides,
+                nextId = id + 1 >= slides.length ? 0 : id + 1,
+                prevId = id - 1 < 0 ? slides.length - 1 : id - 1;
             
             if (Math.abs(dx) > slideWidth / 2) {
                 if (dx < 0) {
                     left = 0;
-                    this._currentSlideId = id - 1 < 0 ? slides.length - 1 : id - 1;
+                    this._currentSlideId = prevId;
                 } else {
                     left = -slideWidth * 2;
-                    this._currentSlideId = id + 1 >= slides.length ? 0 : id + 1;
+                    this._currentSlideId = nextId;
                 }
             }
             
-            this._elements.$trolley.animate({'left': left}, 300, null, function() {
-                
-            });
+            this._elements.$trolley.animate({'left': left}, 300, null, (function() {
+                slides[prevId].hide();
+                slides[nextId].hide();
+                slides[id].hide();
+                slides[this._currentSlideId].show();
+            }).bind(this));
             
         }
     });
