@@ -4,5 +4,29 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 /****************************************************************/
 
 body {
-    font-size: 30px;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+.comments-container {
+    min-height: 50px;
+}
+
+.comments-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.comments-list li {
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.comment-uname {
+    font-weight: bold;
+    display: block;
+    color: cornflowerblue;
 }
