@@ -79,13 +79,13 @@
         _createSlides : function() {
             var $trolley = this._elements.$trolley,
                 slides = this._slides = [],
-                slideHtml = '<div class="ss-slider-slide" style="position: absolute; display: none;" />',
+                slideHtml = '<div class="ss-slider-slide" style="position: absolute; display: none;"><i class="ss-loader"></i></div>',
                 $slide;
             
             $trolley.empty();
             
             for (var i = 0, len = this.options.images.length; i < len; i++) {
-                $slide = $(slideHtml).appendTo($trolley).text(i);
+                $slide = $(slideHtml).appendTo($trolley);
                 slides.push($slide);
             }
         },
