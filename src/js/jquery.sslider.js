@@ -4,12 +4,13 @@
 *********************************************************/
 
 ;(function ($, window, document, undefined) {
-
+    'use strict';
+    
     var pluginName = "sslider",
         defaults = {
             images : [],
             animationSpeed: 300,
-            afterSlideChange : function(index, imgUrl) {},
+            afterSlideChange : function (index, imgUrl) {},
             swipeDurationThreshold : 200,
             swipeDistanceThreshold : 30
         };
@@ -17,7 +18,7 @@
     function Plugin(element, options) {
         this.element = element;
 
-        options = Array.isArray(options) ? {images : options} : options
+        options = Array.isArray(options) ? {images : options} : options;
         this.options = $.extend({}, defaults, options);
 
         this._defaults = defaults;
@@ -55,7 +56,7 @@
                 startPos,
                 isDirChecked = false;
             
-            $(document).on('vmousedown', $container, (function(e) {
+            $(document).on('vmousedown', $container, (function (e) {
                 this._startDrag();
                 
                 startTouch = new Date();
@@ -66,7 +67,7 @@
                 isDirChecked = false;
             }).bind(this));
             
-            $(document).on('vmousemove', $container, (function(e) {                
+            $(document).on('vmousemove', $container, (function(e) {
                 if (dragging) {
                     if (!isDirChecked) {
                         if (Math.abs(startX - e.pageX) < Math.abs(startY - e.pageY)) {
@@ -74,8 +75,8 @@
                             return;
                         } else {
                             isDirChecked = true;
-                        }                       
-                    }                    
+                        }
+                    }
                     
                     e.preventDefault();
                     this._drag(startPos, startX - e.pageX, trolleyStyle);
@@ -93,7 +94,7 @@
             $(this.element).append($container);
         },
         
-        _createSlides : function() {
+        _createSlides : function () {
             var $trolley = this._elements.$trolley,
                 slides = this._slides = [],
                 slideHtml = '<div class="ss-slider-slide" style="position: absolute; display: none;"><i class="ss-loader"></i></div>',
@@ -106,7 +107,7 @@
                 slides.push($slide);
             }
         },
-        
+
         _resize : function() {
             var sliderWidth = $(this.element).width(),
                 screenHeight = $(window).height(),
@@ -155,7 +156,7 @@
             slides[id].css({
                 'left' : slideWidth,
                 'display' : 'block'
-            });            
+            });
             
             slides[nextId].css({
                 'left' : slideWidth * 2,
@@ -212,7 +213,7 @@
                 slides[this._currentSlideId].show();
             }).bind(this));
             
-            this.options.afterSlideChange(currentId, this.options.images[currentId]);            
+            this.options.afterSlideChange(currentId, this.options.images[currentId]);
         }
     });
 
