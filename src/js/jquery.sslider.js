@@ -116,7 +116,7 @@
             this._setActSlidesPos();
         },
         
-        _loadImage(imageUrl, $slide) {
+        _loadImage : function (imageUrl, $slide) {
             var img = new Image();
             
             img.onload = function() {
