@@ -3,11 +3,6 @@
     Author: Kadymov Alexander (alkadymov@gmail.com)
 *********************************************************/
 
-.ss-slider-container {
-    background: #333;
-    box-shadow: 0 0 30px black inset;
-}
-
 @keyframes ss-animation-loader {
     0%   {background-color: rgba(255, 255, 255, 0.2);}
     50%  {background-color: rgba(255, 255, 255, 0.5);}
@@ -19,49 +14,58 @@
     to {opacity: 1;}
 }
 
+.ss-slider-container {
+    background: #333;
+    box-shadow: 0 0 30px black inset;
+}
+
 .ss-loader,
 .ss-loader:after,
 .ss-loader:before {
-  display: block;
-  width: 15px;
-  height: 15px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  position: absolute;
-  animation-name: ss-animation-loader;
-  -webkit-animation: ss-animation-loader 0.9s infinite;
-          animation: ss-animation-loader 0.9s infinite;
+    width: 15px;
+    height: 15px;
+
+    display: block;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    position: absolute;
+    
+    animation-name: ss-animation-loader;
+    -webkit-animation: ss-animation-loader 0.9s infinite;
+    animation: ss-animation-loader 0.9s infinite;
 }
 
 .ss-loader {
-  top: 0; right: 0; bottom: 0; left: 0;
-  margin: auto;  
-  animation-delay: 0.3s;
+    top: 0; right: 0; bottom: 0; left: 0;
+    margin: auto;  
+    animation-delay: 0.3s;
 }
 
 .ss-loader:after {
-  content: '';
-  left: 30px;
-  animation-delay: 0.6s;
+    content: '';
+    left: 30px;
+    animation-delay: 0.6s;
 }
 
 .ss-loader:before {
-  content: '';
-  left: -30px;
-  animation-delay: 0s;
+    content: '';
+    left: -30px;
+    animation-delay: 0s;
 }
 
 .ss-slider-image {
     max-height: 90%;
     max-width: 90%;
+
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
+
     box-shadow: 0 0 10px black;
-    
+
     -webkit-animation: ss-animation-img 1s;
-            animation: ss-animation-img 1s;
+    animation: ss-animation-img 1s;
 }
