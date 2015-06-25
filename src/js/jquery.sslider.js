@@ -8,7 +8,7 @@
     var pluginName = "sslider",
         defaults = {
             images : [],
-            animationSpeed: 800,
+            animationSpeed: 300,
             afterSlideChange : function(index, imgUrl) {},
             swipeDurationThreshold : 200,
             swipeDistanceThreshold : 30
@@ -30,7 +30,8 @@
         init: function() {
             var $container = $('<div class="ss-slider-container" style="position: relative; overflow: hidden;" />'),
                 $trolley = $('<div class="ss-slider-trolley" style="position: absolute; height: 100%; left: 0;" />')
-                    .appendTo($container);
+                    .appendTo($container),
+                trolleyStyle = $trolley[0].style;
             
             this._elements = {
                 $container : $container,
@@ -65,7 +66,7 @@
                 isDirChecked = false;
             }).bind(this));
             
-            $(document).on('vmousemove', $container, (function(e) { //TODO
+            $(document).on('vmousemove', $container, (function(e) {                
                 if (dragging) {
                     if (!isDirChecked) {
                         if (Math.abs(startX - e.pageX) < Math.abs(startY - e.pageY)) {
@@ -77,7 +78,7 @@
                     }                    
                     
                     e.preventDefault();
-                    this._drag(startPos, startX - e.pageX);
+                    this._drag(startPos, startX - e.pageX, trolleyStyle);
                 }
             }).bind(this));
             
@@ -172,8 +173,8 @@
             this._startDragTime = new Date();
         },
         
-        _drag : function(startPos, dx) {
-            this._elements.$trolley.css('left', startPos - dx);
+        _drag : function(startPos, dx, trolleyStyle) {
+            trolleyStyle.left = (startPos - dx) + 'px';
         },
         
         _endDrag : function(dx) { 
