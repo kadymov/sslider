@@ -84,6 +84,7 @@
             }).bind(this));
             
             $(document).on('vmouseup', $container, (function(e) {
+                if (!dragging) return;
                 dragging = false;
                 this._endDrag(startX - e.pageX);
             }).bind(this));
