@@ -50,21 +50,33 @@
             var startTouch,
                 dragging = false,
                 startX,
-                startPos;
+                startY,
+                startPos,
+                isDirChecked = false;
             
             $(document).on('vmousedown', $container, (function(e) {
                 this._startDrag();
                 
                 startTouch = new Date();
                 startX = e.pageX;
+                startY = e.pageY;
                 dragging = true;
                 startPos = parseInt($trolley.css('left'), 10);
-                
-                
+                isDirChecked = false;
             }).bind(this));
             
             $(document).on('vmousemove', $container, (function(e) { //TODO
                 if (dragging) {
+                    if (!isDirChecked) {
+                        if (Math.abs(startX - e.pageX) < Math.abs(startY - e.pageY)) {
+                            dragging = false;
+                            return;
+                        } else {
+                            isDirChecked = true;
+                        }                       
+                    }                    
+                    
+                    e.preventDefault();
                     this._drag(startPos, startX - e.pageX);
                 }
             }).bind(this));
