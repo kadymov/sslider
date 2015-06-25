@@ -138,6 +138,7 @@
             };
             
             img.className = 'ss-slider-image';
+            img.ondragstart = 'return false;';
             img.src = imageUrl;
             
             return img;
