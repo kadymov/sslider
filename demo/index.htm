@@ -13,7 +13,7 @@
 
     <div id="slider_container"></div>
 
-    <div class="comments-container">
+    <div class="comments-container" style="display: none;">
         <h1>Comments</h1>
         <ul id="comments" class="comments-list"></ul>
     </div>
@@ -44,6 +44,8 @@
                     });
                 }
             });
+            
+            $('.comments-container').show();
         });
     </script>
     <script src="../lib/jquery.mobile.js"></script>
