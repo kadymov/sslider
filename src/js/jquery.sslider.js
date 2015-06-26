@@ -115,6 +115,11 @@
             this._goto(-1);
         },
         
+        destroy : function () {
+            $.data(this, pluginName, null);
+            this._elements.$container.remove();
+        },
+        
         /************************* Private section ***************************/
         
         _goto : function (dir) {
