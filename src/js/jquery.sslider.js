@@ -56,7 +56,7 @@
                 startPos,
                 isDirChecked = false;
             
-            $(document).on('vmousedown', $container, (function (e) {
+            $container.on('vmousedown', (function (e) {
                 this._startDrag();
                 
                 startTouch = new Date();
@@ -67,7 +67,7 @@
                 isDirChecked = false;
             }).bind(this));
             
-            $(document).on('vmousemove', $container, (function(e) {
+            $container.on('vmousemove', (function(e) {
                 if (dragging) {
                     if (!isDirChecked) {
                         if (Math.abs(startX - e.pageX) < Math.abs(startY - e.pageY)) {
@@ -83,7 +83,7 @@
                 }
             }).bind(this));
             
-            $(document).on('vmouseup', $container, (function(e) {
+            $container.on('vmouseup', (function(e) {
                 if (!dragging) return;
                 dragging = false;
                 this._endDrag(startX - e.pageX);
