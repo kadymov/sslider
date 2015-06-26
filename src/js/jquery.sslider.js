@@ -1,6 +1,7 @@
 /*********************************************************
                         SSlider
     Author: Kadymov Alexander (alkadymov@gmail.com)
+            https://github.com/kadymov/sslider
 *********************************************************/
 
 ;(function ($, window, document, undefined) {

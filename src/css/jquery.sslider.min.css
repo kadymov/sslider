@@ -1,0 +1,6 @@
+/*
+SSlider
+Author: Kadymov Alexander (alkadymov@gmail.com)
+https://github.com/kadymov/sslider
+*/
+@keyframes ss-animation-loader{0%{background-color:rgba(255,255,255,.2)}50%{background-color:rgba(255,255,255,.5)}100%{background-color:rgba(255,255,255,.2)}}.ss-slider-container{background:#333;box-shadow:0 0 30px #000 inset}.ss-loader,.ss-loader:after,.ss-loader:before{width:15px;height:15px;display:block;background:rgba(255,255,255,.2);border-radius:20px;position:absolute;-webkit-animation:ss-animation-loader .9s infinite;animation:ss-animation-loader .9s infinite}.ss-loader{top:0;right:0;bottom:0;left:0;margin:auto;animation-delay:.3s}.ss-loader:after{content:'';left:30px;animation-delay:.6s}.ss-loader:before{content:'';left:-30px;animation-delay:0s}.ss-slider-image{max-height:90%;max-width:90%;position:absolute;top:0;left:0;right:0;bottom:0;margin:auto;box-shadow:0 0 10px #000}}
