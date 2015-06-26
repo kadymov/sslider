@@ -136,9 +136,11 @@
             
             img.onload = function() {
                 $slide.addClass('loaded').empty().append(img);
+                $(img).fadeIn(300);
             };
             
             img.className = 'ss-slider-image';
+            img.style.display = 'none';
             img.ondragstart = 'return false;';
             img.src = imageUrl;
             
@@ -192,7 +194,6 @@
                 
                 duration = (new Date()) - this._startDragTime;
             
-      
             if ((Math.abs(dx) > slideWidth / 2) || 
                 (duration < this.options.swipeDurationThreshold && Math.abs(dx) > this.options.swipeDistanceThreshold)) {
                     if (dx < 0) {
