@@ -28,6 +28,8 @@
     }
 
     $.extend(Plugin.prototype, {
+        
+        // Initialization
         init: function() {
             var $container = $('<div class="ss-slider-container" style="position: relative; overflow: hidden;" />'),
                 $trolley = $('<div class="ss-slider-trolley" style="position: absolute; height: 100%; left: 0;" />')
@@ -95,6 +97,58 @@
             $(this.element).append($container);
         },
         
+        /************************* Public section ****************************/
+        
+        load : function (imgArr) {
+            this.options.images = imgArr;
+            this._createSlides();
+            this._loadImage(this.options.images[0], this._slides[0]);
+        },
+        
+        next : function () {
+            this._setActSlidesPos(true);
+            this._goto(1);
+        },
+        
+        prev : function () {
+            this._setActSlidesPos(true);
+            this._goto(-1);
+        },
+        
+        /************************* Private section ***************************/
+        
+        _goto : function (dir) {
+            var slideWidth = this._elements.$container.width(),
+                left = -slideWidth,
+                
+                id = this._currentSlideId,
+                slides = this._slides,
+                nextId = id + 1 >= slides.length ? 0 : id + 1,
+                prevId = id - 1 < 0 ? slides.length - 1 : id - 1,
+                currentId = id;
+                        
+            if (dir < 0) {
+                left = 0;
+                currentId = this._currentSlideId = prevId;
+            } else if (dir > 0) {
+                left = -slideWidth * 2;
+                currentId = this._currentSlideId = nextId;
+            }            
+            
+            if (!slides[currentId].is('.loaded')) {
+                this._loadImage(this.options.images[currentId], slides[currentId]);
+            }
+            
+            this._elements.$trolley.animate({'left': left}, this.options.animationSpeed, null, (function() {
+                slides[prevId].hide();
+                slides[nextId].hide();
+                slides[id].hide();
+                slides[this._currentSlideId].show();
+            }).bind(this));
+            
+            this.options.afterSlideChange(currentId, this.options.images[currentId]);
+        },
+                
         _createSlides : function () {
             var $trolley = this._elements.$trolley,
                 slides = this._slides = [],
@@ -183,40 +237,15 @@
         },
         
         _endDrag : function(dx) { 
-            var slideWidth = this._elements.$container.width(),
-                left = -slideWidth,
-                
-                id = this._currentSlideId,
-                slides = this._slides,
-                nextId = id + 1 >= slides.length ? 0 : id + 1,
-                prevId = id - 1 < 0 ? slides.length - 1 : id - 1,
-                currentId = id,
-                
+            var slideWidth = this._elements.$container.width(),                
                 duration = (new Date()) - this._startDragTime;
             
             if ((Math.abs(dx) > slideWidth / 2) || 
                 (duration < this.options.swipeDurationThreshold && Math.abs(dx) > this.options.swipeDistanceThreshold)) {
-                    if (dx < 0) {
-                        left = 0;
-                        currentId = this._currentSlideId = prevId;
-                    } else {
-                        left = -slideWidth * 2;
-                        currentId = this._currentSlideId = nextId;
-                    }
+                    this._goto(dx);
+            } else {
+                this._goto(0);
             }
-            
-            if (!slides[currentId].is('.loaded')) {
-                this._loadImage(this.options.images[currentId], slides[currentId]);
-            }
-            
-            this._elements.$trolley.animate({'left': left}, this.options.animationSpeed, null, (function() {
-                slides[prevId].hide();
-                slides[nextId].hide();
-                slides[id].hide();
-                slides[this._currentSlideId].show();
-            }).bind(this));
-            
-            this.options.afterSlideChange(currentId, this.options.images[currentId]);
         }
     });
 
