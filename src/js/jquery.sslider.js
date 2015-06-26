@@ -194,7 +194,7 @@
             
       
             if ((Math.abs(dx) > slideWidth / 2) || 
-                (duration < this.options.swipeDurationThreshold && dx > this.options.swipeDistanceThreshold)) {
+                (duration < this.options.swipeDurationThreshold && Math.abs(dx) > this.options.swipeDistanceThreshold)) {
                     if (dx < 0) {
                         left = 0;
                         currentId = this._currentSlideId = prevId;
