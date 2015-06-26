@@ -21,9 +21,6 @@
         options = Array.isArray(options) ? {images : options} : options;
         this.options = $.extend({}, defaults, options);
 
-        this._defaults = defaults;
-        this._name = pluginName;
-        
         this.init();
     }
 
@@ -157,7 +154,8 @@
         _createSlides : function () {
             var $trolley = this._elements.$trolley,
                 slides = this._slides = [],
-                slideHtml = '<div class="ss-slider-slide" style="position: absolute; display: none;"><i class="ss-loader"></i></div>',
+                slideHtml = '<div class="ss-slider-slide" style="position: absolute; display: none;">' +
+                    '<i class="ss-loader"></i></div>',
                 $slide;
             
             $trolley.empty();
@@ -246,8 +244,10 @@
                 duration = (new Date()) - this._startDragTime;
             
             if ((Math.abs(dx) > slideWidth / 2) || 
-                (duration < this.options.swipeDurationThreshold && Math.abs(dx) > this.options.swipeDistanceThreshold)) {
-                    this._goto(dx);
+                ( duration < this.options.swipeDurationThreshold &&
+                Math.abs(dx) > this.options.swipeDistanceThreshold) )
+            {
+                this._goto(dx);
             } else {
                 this._goto(0);
             }
