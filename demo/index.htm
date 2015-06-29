@@ -9,7 +9,7 @@
     <style>
         body {
             background: #0BB392;
-            margin: 0;
+            margin: 20px 0 0 0;
             padding: 0;
             color: #fff;
             text-align: center;
@@ -48,20 +48,18 @@
         <h1 class="logo-text"><div class="logo flat-shadow">sS</div>lider.JS</h1>
         <h2 class="desc-block">Simple jQuery Mobile Slider</h2>
 
-        <a class="mobile-version flat-shadow" href="demo.htm">Go to mobile version</a><br/>
-
+        <a class="link flat-shadow mobile-ver" href="demo.htm">Go to mobile version</a><br/>
         <a class="link flat-shadow" href="">GitHub</a>
         <a class="link flat-shadow" href="">Author's site</a>
 
         <h3>How to use...</h3>
-        <pre class="code">
+        <pre class="code flat-shadow">
 $(<span class="str">'#slider_container'</span>).<span class="func">sslider</span>({
     images: [<span class="str">'img/img1.jpg'</span>, <span class="str">'img/img2.jpg'</span>, <span class="str">'img/img3.jpg'</span>],
-    afterSlideChange : <span class="keyword">function</span> (id) {
+    afterSlideChange : <span class="keyword">function</span> (id, url) {
         <span class="comment>">// ...</span>
     }
-});
-        </pre>
+});</pre>
     </div>
     <div class="column">
         <div class="i-mobile flat-shadow">

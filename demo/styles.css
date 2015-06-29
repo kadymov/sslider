@@ -43,7 +43,8 @@ body {
     rgb(236, 144, 94) 9px 9px;
 }
 
-.logo-text {
+.logo-text,
+.desc-block{
     color: #EEEEEE;
     font-weight: bolder;
     font-size: 40px;
@@ -67,6 +68,10 @@ body {
     rgb(10, 176, 143) 17px 17px,
     rgb(10, 177, 144) 18px 18px,
     rgb(11, 179, 146) 19px 19px;
+}
+
+.desc-block {
+    font-size: 25px;
 }
 
 .flat-shadow {
@@ -158,16 +163,6 @@ body {
     height: 100%;
 }
 
-.mobile-version {
-    display: inline-block;
-    margin: 20px;
-    padding: 10px;
-    font-size: 20px;
-    background: #ED2E53;
-    color: #ffffff;
-    text-decoration: none;
-}
-
 .link {
     display: inline-block;
     margin: 20px;
@@ -176,12 +171,28 @@ body {
     background: #B72150;
     color: #ffffff;
     text-decoration: none;
+
+    -webkit-transition: all 0.3s;
+       -moz-transition: all 0.3s;
+         -o-transition: all 0.3s;
+            transition: all 0.3s;
+}
+
+.link:hover {
+    background: #ED2E53;
+    transform: scale(1.1, 1.1);
+}
+
+.mobile-ver {
+    font-weight: bold;
 }
 
 .code {
     text-align: left;
     font-size: 14px;
     color: #095C5B;
+    background: #fff;
+    padding: 5px;
 }
 
 .code .str {
