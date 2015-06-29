@@ -3,7 +3,6 @@ SSlider.JS
 =============
 
 Simple jQuery Mobile Slider
----------------------------
 
 Demo Page
 ----
