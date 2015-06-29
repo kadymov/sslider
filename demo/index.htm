@@ -4,51 +4,78 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>SSlider.JS Demo Page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    
+
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="../src/css/jquery.sslider.min.css">
+    <style>
+        body {
+            background: #0BB392;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+
+
+    <script src="../lib/jquery.js"></script>
+    <script>
+        $(function() {
+            $(window).bind('mousewheel', function(e) {
+                if (e.target.id === 'iFrame') {
+                    e.stopPropagation();
+
+                    var frameWin = e.target.contentWindow,
+                        $frameWin = $(frameWin),
+                        body = $('html, body', frameWin.document);
+
+                    body.scrollTop($frameWin.scrollTop() - e.originalEvent.wheelDelta);
+
+                    var scroll = $frameWin.scrollTop() / (body.height() - frameWin.innerHeight);
+
+
+                    $('#iSbar').css('top', scroll * 290 + 5);
+
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 
-    <div id="slider_container"></div>
+<div class="page-content">
+    <div class="column">
+        <h1 class="logo-text"><div class="logo flat-shadow">sS</div>lider.JS</h1>
+        <h2 class="desc-block">Simple jQuery Mobile Slider</h2>
 
-    <div class="comments-container" style="display: none;">
-        <h1>Comments</h1>
-        <ul id="comments" class="comments-list"></ul>
+        <a class="mobile-version flat-shadow" href="demo.htm">Go to mobile version</a><br/>
+
+        <a class="link flat-shadow" href="">GitHub</a>
+        <a class="link flat-shadow" href="">Author's site</a>
+
+        <h3>How to use...</h3>
+        <pre class="code">
+$(<span class="str">'#slider_container'</span>).<span class="func">sslider</span>({
+    images: [<span class="str">'img/img1.jpg'</span>, <span class="str">'img/img2.jpg'</span>, <span class="str">'img/img3.jpg'</span>],
+    afterSlideChange : <span class="keyword">function</span> (id) {
+        <span class="comment>">// ...</span>
+    }
+});
+        </pre>
     </div>
-
-    <!-------------------- Scripts --------------------->
-    <script src="../lib/jquery.js"></script>
-    <script src="../src/js/jquery.sslider.min.js"></script>
-    <script>
-        $(document).on( "mobileinit", function() {
-            'use strict';
-
-            $.mobile.loading().hide();
-            
-            $('#slider_container').sslider({
-                images: ['img/img1.jpg', 'img/img2.jpg', 'img/img3.jpg', 'img/img4.jpg'],
-                afterSlideChange : function (id) {
-                    $.ajax({
-                        url: 'data/img' + id + '.json',
-                        dataType : 'json'
-                    }).done(function(data) {
-                        var html = [];
-                        Array.isArray(data) && data.forEach(function(el) {
-                            html.push('<li><div class="comment-uname">' + 
-                                      el.uname + '</div>' + el.comment + '</li>');
-                        });
-
-                        $('#comments').html(html);
-                    });
-                }
-            });
-            
-            $('.comments-container').show();
-        });
-    </script>
-    <script src="../lib/jquery.mobile.js"></script>
+    <div class="column">
+        <div class="i-mobile flat-shadow">
+            <div class="i-camera"></div>
+            <div class="i-speaker"></div>
+            <div class="i-screen">
+                <div class="i-sbar" id="iSbar"></div>
+                <iframe id="iFrame" frameborder="no"
+                        scrolling="no" class="i-frame" src="demo.htm"></iframe>
+            </div>
+            <div class="i-button"></div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

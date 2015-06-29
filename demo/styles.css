@@ -8,6 +8,199 @@ body {
     font-size: 16px;
 }
 
+/********************** Index.htm *******************************/
+
+.page-content {
+    width: 70%;
+    max-width: 1000px;
+    min-width: 700px;
+    margin: 0 auto;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+.logo {
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    line-height: 80px;
+    background-color: rgb(255, 156, 102);
+
+    font-size: 50px;
+    text-align: center;
+
+    text-shadow: rgb(220, 135, 88) 1px 1px,
+    rgb(222, 136, 89) 2px 2px,
+    rgb(224, 137, 90) 3px 3px,
+    rgb(226, 138, 90) 4px 4px,
+    rgb(228, 139, 91) 5px 5px,
+    rgb(230, 140, 92) 6px 6px,
+    rgb(232, 142, 93) 7px 7px,
+    rgb(234, 143, 93) 8px 8px,
+    rgb(236, 144, 94) 9px 9px;
+}
+
+.logo-text {
+    color: #EEEEEE;
+    font-weight: bolder;
+    font-size: 40px;
+
+    text-shadow: rgb(9, 155, 127) 1px 1px,
+    rgb(9, 156, 128) 2px 2px,
+    rgb(9, 157, 129) 3px 3px,
+    rgb(9, 159, 130) 4px 4px,
+    rgb(9, 160, 131) 5px 5px,
+    rgb(9, 161, 132) 6px 6px,
+    rgb(9, 163, 133) 7px 7px,
+    rgb(9, 164, 134) 8px 8px,
+    rgb(9, 165, 135) 9px 9px,
+    rgb(10, 167, 136) 10px 10px,
+    rgb(10, 168, 137) 11px 11px,
+    rgb(10, 169, 138) 12px 12px,
+    rgb(10, 171, 139) 13px 13px,
+    rgb(10, 172, 140) 14px 14px,
+    rgb(10, 173, 141) 15px 15px,
+    rgb(10, 175, 142) 16px 16px,
+    rgb(10, 176, 143) 17px 17px,
+    rgb(10, 177, 144) 18px 18px,
+    rgb(11, 179, 146) 19px 19px;
+}
+
+.flat-shadow {
+    box-shadow: rgb(10, 163, 133) 1px 1px,
+    rgb(10, 164, 133) 2px 2px,
+    rgb(10, 164, 134) 3px 3px,
+    rgb(10, 165, 134) 4px 4px,
+    rgb(10, 165, 135) 5px 5px,
+    rgb(10, 166, 135) 6px 6px,
+    rgb(10, 166, 136) 7px 7px,
+    rgb(10, 167, 136) 8px 8px,
+    rgb(10, 167, 136) 9px 9px,
+    rgb(10, 168, 137) 10px 10px,
+    rgb(10, 168, 137) 11px 11px,
+    rgb(10, 169, 138) 12px 12px,
+    rgb(10, 169, 138) 13px 13px,
+    rgb(10, 170, 139) 14px 14px,
+    rgb(10, 171, 139) 15px 15px,
+    rgb(10, 171, 139) 16px 16px,
+    rgb(10, 172, 140) 17px 17px,
+    rgb(10, 172, 140) 18px 18px,
+    rgb(10, 173, 141) 19px 19px,
+    rgb(10, 173, 141) 20px 20px,
+    rgb(10, 174, 142) 21px 21px,
+    rgb(10, 174, 142) 22px 22px,
+    rgb(10, 175, 142) 23px 23px,
+    rgb(10, 175, 143) 24px 24px,
+    rgb(10, 176, 143) 25px 25px,
+    rgb(10, 176, 144) 26px 26px,
+    rgb(10, 177, 144) 27px 27px,
+    rgb(10, 177, 145) 28px 28px,
+    rgb(10, 178, 145) 29px 29px,
+    rgb(11, 179, 146) 30px 30px;
+}
+
+.i-mobile {
+    width: 310px;
+    height: 610px;
+    margin: 10px auto;
+    background: #fff;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.i-sbar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 5px;
+    height: 200px;
+    border-radius: 5px;
+    background: rgba(128, 128, 128, 0.5);
+}
+
+.i-camera {
+    width: 7px;
+    height: 7px;
+    margin: 10px auto;
+    border-radius: 5px;
+    background: #eee;
+}
+
+.i-screen {
+    width: 280px;
+    height: 497px;
+    background-color: #eee;
+    margin: 0 auto;
+    position: relative;
+}
+
+.i-speaker {
+    width: 50px;
+    height: 7px;
+    margin: 10px auto;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.i-button {
+    width: 50px;
+    height: 50px;
+    margin: 10px auto;
+    background-color: #eee;
+    border-radius: 50px;
+}
+
+.i-frame {
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-version {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+    background: #ED2E53;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.link {
+    display: inline-block;
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+    background: #B72150;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.code {
+    text-align: left;
+    font-size: 14px;
+    color: #095C5B;
+}
+
+.code .str {
+    color: #B72150;
+}
+
+.code .keyword {
+    font-weight: bold;
+}
+
+.code .func {
+    font-weight: bold;
+}
+
+.code .comment {
+    font-style: italic;
+}
+/*********************** Demo.htm *******************************/
+
 .comments-container {
     min-height: 50px;
 }
@@ -29,4 +222,9 @@ body {
     font-weight: bold;
     display: block;
     color: cornflowerblue;
+}
+
+.ui-page {
+    outline: none;
+    border: none;
 }
